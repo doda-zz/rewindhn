@@ -1,0 +1,33 @@
+    <tr>
+      <td align="right" valign="top" class="title">
+        <%= pos %>.
+      </td>
+      <td>
+        <center>
+          <a id="up_<%= id %>"><img class="uparrow" src="/static/rewind/img/grayarrow.gif" border="0" vspace="3" hspace="2"></a>
+          <span id="down_<%= id %>">
+          </span>
+        </center>
+      </td>
+      <td class="title">
+        <a href="<%= url %>"><%= title %></a>
+        <span class="comhead">
+          <% if (domain) { %>(<%= domain %>) <% } %>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      </td>
+      <td class="subtext">
+        <span id="score_<%= id %>">
+          <%= points %> points
+        </span>
+        by
+        <a href="http://news.ycombinator.com/user?id=<%= submitter %>"><%= submitter %></a>
+        <%= ago %> ago |
+        <a href="http://news.ycombinator.com/item?id=<%= id %>"><% if (comments) { %><%= comments %> comments<% } else { %>discuss<% } %></a>
+      </td>
+    </tr>
+    <tr class="lasttr" style="height:5px">
+    </tr>
