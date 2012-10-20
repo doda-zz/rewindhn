@@ -6,8 +6,11 @@ $(document).ready((function (undefined) {
             content: function () {
                 return $('#popover_content').html();
             }
-        })
-        .popover('show');
+        });
+    if (!$.cookie('showed-popup')) {
+        $('#about').popover('show');
+        $.cookie('showed-popup', 1);
+    }
 
     $(document).on('click', '.close', function() {
         $('#about').popover('hide');
