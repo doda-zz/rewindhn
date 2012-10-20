@@ -6,7 +6,11 @@ $(document).ready((function (undefined) {
             content: function () {
                 return $('#popover_content').html();
             }
+        })
+        .click(function (event) {
+            event.preventDefault();
         });
+
     if (!$.cookie('showed-popup')) {
         $('#about').popover('show');
         $.cookie('showed-popup', 1);
