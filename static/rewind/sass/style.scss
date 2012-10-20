@@ -1,0 +1,173 @@
+$orange: #ff6600;
+$lightgrey: #bbb;
+$lightestgrey: #ddd;
+
+// @font-face {
+//     font-family: "Silkscreen";
+//     src: url(/static/rewind/slkscr.ttf);
+// }
+
+h4 {
+    color: #222;
+    a:visited {
+        color: #828282;
+        text-decoration: none;
+    }
+    a:link {
+        color: #828282;
+        text-decoration: none;
+    }
+}
+
+a { cursor: pointer; }
+body {
+    margin: 8px;
+    padding-bottom: 60px;
+}
+
+.content {
+    height: 800px;
+}
+
+#popover_content {
+    display: none;
+}
+
+.popover {
+    left: 0;
+    width: 700px;
+    color: #333;
+}
+
+.popover p > a {
+        text-decoration: underline;
+}
+
+a.more {
+   font-family:Verdana;
+   font-size: 10pt;
+   color:#828282;
+}
+
+h4 a {
+    color: #828282;
+}
+
+.popover .arrow {
+    display: none;
+}
+
+.popover-title {
+    display: none;
+}
+
+.nav-tabs > li.attribution > a {
+    border: none;
+}
+
+.tab-pane p {
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.attribution {
+    color: $lightgrey;
+    a {
+        color: $lightgrey;
+    }
+    text-align: right;
+    position: relative;
+    right: -15px;
+    width: 90px;
+    margin-top: 40px;
+}
+
+.top {
+  height: 20px;
+  padding-right: 9px;
+}
+
+.ui-slider-horizontal {
+    height: .6em;
+    margin-top: .1em;
+    position: relative;
+    .ui-slider-handle {
+        width: 1em;
+        top: -.3em;
+        height: 1em;
+        z-index:20;
+    }
+}
+
+
+.close {
+    top: 20px;
+    right: 3px;
+}
+
+
+.btn i {
+    top: -1px;
+    position: relative;
+}
+
+dd {
+    margin-bottom: 6px;
+    padding-top: 2px;
+}
+
+.uparrow {
+    visibility: hidden;
+}
+
+#about {
+    width: 10px;
+    padding: 0 7px;
+    a {
+        color: white;
+    }
+}
+
+.preload {
+    display: none;
+}
+
+#date {
+    min-width: 125px;
+    text-align: center;
+    float: right;
+    margin-right: 21px;
+}
+
+.spinner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-image: url(/static/rewind/img/ajax-loader.gif);
+}
+
+.mark {
+    position: absolute;
+    width: 1px;
+    height: 9px;
+    z-index:11;
+}
+
+.day {
+    @extend .mark;
+    background-color: $lightgrey;
+    z-index:12;
+
+    // border-top-style:none;
+    // border-right-style:solid;
+    // border-bottom-style:none;
+    // border-left-style:solid;
+    border-right: 1px solid $lightestgrey;
+    border-left: 1px solid $lightestgrey;
+    width: 1px;
+}
+
+.twohour {
+    @extend .mark;
+    background-color: $lightestgrey;
+}

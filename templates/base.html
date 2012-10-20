@@ -1,0 +1,285 @@
+<html>
+  <!-- Hacker News 90s markup largely left intact ~O~ -->
+  
+  <head>
+    <link rel="stylesheet" href="/static/rewind/css/ui-lightness/jquery-ui-1.8.23.custom.css">
+    <link rel="stylesheet" type="text/css" href="/static/rewind/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/rewind/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/rewind/css/news.css">
+    <link rel="stylesheet" type="text/css" href="/static/rewind/css/style.css">
+    <link rel="shortcut icon" href="/static/rewind/img/favicon.ico">
+    <title>
+      Rewind HN
+    </title>
+  </head>
+  
+  <body>
+    <div class="preload">
+      <div class="spinner">
+      </div>
+      <i class="icon-arrow-left">
+      </i>
+      <i class="icon-arrow-right">
+      </i>
+      <img src="/static/rewind/css/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png">
+      <img src="/static/rewind/css/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png">
+      <img src="/static/rewind/img/grayarrow.gif">
+      <img src="/static/rewind/img/glyphicons-halflings.png">
+    </div>
+    <center>
+      <table border="0" cellpadding="0" cellspacing="0" width="85%" bgcolor="#f6f6ef">
+        <tbody>
+          <tr>
+            <td bgcolor="#ff6600">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px">
+                <tbody>
+                  <tr>
+                    <td style="width:18px;padding-right:4px">
+                      <a href="/"><img src="/static/rewind/img/y18.gif" width=18 height=18 style="border:1px #ffffff solid;"></img></a>
+                    </td>
+                    <td style="line-height:12pt; height:10px; width:285px;">
+                      <div class="pagetop">
+                        <b>
+                          <a href="/">Rewind HN</a>
+                        </b>
+                        <span id="date">
+                        </span>
+                      </div>
+                    </td>
+                    <td class="top">
+                    </td>
+                    <td id="about">
+                      <a href="#">About</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr style="height:10px">
+          </tr>
+          <tr>
+            <td class="content">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </center>
+    <script>
+    pages = {{ pages|tojson|safe }};
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="/static/rewind/js/vendor/jquery.js"><\/script>')</script>
+    <script type="text/template" id="popover_content">
+    <div class="tabbable tabs-right">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#tab1" data-toggle="tab">About</a>
+            </li>
+            <li class="">
+              <a href="#tab2" data-toggle="tab">API</a>
+            </li>
+            <li class="">
+              <a href="#tab3" data-toggle="tab">Source code</a>
+            </li>
+            <li class="disabled attribution">
+                  <p> by <a href="http://doda.co">Dominik Dabrowski</a> </p>
+            </li>
+          </ul>
+          <div class="tab-content" style="padding-bottom: 9px;">
+          <button type="button" class="close">×</button>
+            <div class="tab-pane active" id="tab1">
+                    <h3>
+          Go back in
+          <a href="http://news.ycombinator.com/">Hacker News</a>
+          history
+        </h3>
+        <p>
+          Try dragging the slider to the left to see what hit the front page in the past.
+        </p>
+        <p>
+          You can also use your keyboard:
+        </p>
+        <dl class="dl-horizontal">
+          <dt>
+            <a href="#" class="btn btn-mini disabled">
+            <i class="icon-arrow-left"></i> 
+            <i class="icon-arrow-right"></i>
+          </a>
+          </dt>
+          <dd>
+            Move 10 minutes
+          </dd>
+          <dt>
+            <a href="#" class="btn btn-mini disabled">Ctrl</a>
+            <a href="#" class="btn btn-mini disabled">
+            <i class="icon-arrow-left"></i> 
+            <i class="icon-arrow-right"></i>
+          </a>
+          </dt>
+          <dd>
+            Move 2 hours
+          </dd>
+          <dt>
+            <a href="#" class="btn btn-mini disabled">Ctrl</a>
+            <a href="#" class="btn btn-mini disabled">Shift</a>
+            <a href="#" class="btn btn-mini disabled">
+            <i class="icon-arrow-left"></i> 
+            <i class="icon-arrow-right"></i>
+          </a>
+            </i>
+            </a>
+          </dt>
+          <dd>
+            Move 1 day
+          </dd>
+        </dl>
+            </div>
+            <div class="tab-pane" id="tab2">
+            <h4>API</h4>
+            <p>
+            I want other hackers to build cool stuff with this data. 
+            </p>
+            <p>
+            You could for example visualize how stories rise and fall on the front page over time, or build something like <a href="http://hnpickup.appspot.com/">HNPickup</a> but make it extend far into the past. Your creativity is the limit! 
+            </p>
+            <p>
+             The API is a thin wrapper around a MongoDB collection, accessed through the Python <a href="http://api.mongodb.org/python/current/api/pymongo/collection.html">pymongo</a> driver, in order to preserve the awesome <a href="http://www.mongodb.org/display/DOCS/Querying">querying abilities</a> of MongoDB.
+            </p>
+            <p>
+            Right now it consists of a single endpoint:
+            </p>
+            <code>/api/v1/pages</code>
+            <p>
+            You can customize the search by using URL parameters. An example from the source code of the site itself:
+            </p>
+            <code>/api/v1/pages?limit=200&spec={"page":0,"idx":{"$gte":200,"$lt":400}}</code>
+            <p>
+            This queries the front pages #200 through #399
+            </p>
+            <p>
+            Full list of parameters with <strong>default values</strong>:
+            </p>
+<code>?spec=null&fields={"html":false, "_id":false}&skip=0&limit=30&sort=null</code>
+<ul class="unstyled" style="margin-top: 10px;">
+<li>
+<strong>spec</strong> (optional): a SON object specifying elements which must be present for a document to be included in the result set
+</li>
+<li>
+<strong>fields</strong> (optional): a list of field names that should be returned in the result set (“_id” will always be included), or a dict specifying the fields to return, by default "_id" and "html" are excluded.
+</li>
+<li>
+<strong>skip</strong> (optional): the number of documents to omit (from the start of the result set) when returning the results
+</li>
+<li>
+<strong>limit</strong> (optional): the maximum number of results to return, hard limit is 200
+</li>
+<li>
+<strong>sort</strong> (optional): only sortable on "idx". an integer specifying the sort order for this query. 1 is ascending, -1 is descending
+</li>
+</ul>
+            <p>
+            An example response with all available fields included:
+            </p>
+            <p>
+            <code>http://rewindhn.com/api/v1/pages?fields=null</code>
+            </p>
+
+            <pre><code>{
+    "count": 30,
+    "results": [{
+        "created_at": "2012-10-12T01:10:13.735000", // dates are in
+                                                    // ISO 8601 format
+        "page": 1, // 0 is the front page, 
+                   // 1 is the second page you reach after clicking "More"
+        "idx": 310 // an easier way to index into the collection,
+                   // akin to a primary key autoincrement
+        "html": "&lt;!DOCTYPE HTML PUBLIC...", // originally scraped html blob
+        "_id": "508084daddf8f34b400002b2", // MongoDB ObjectId
+        "posts": [{
+            "ago": "8 hours",
+            "domain": "economist.com",
+            "title": "The Lure of Chilecon Valley",
+            "url": "http://www.economist.com/node/21564589",
+            "pos": 1,
+            "comments": 26,
+            "points": 47,
+            "submitter": "gphil",
+            "id": 4641645
+        },
+        ...
+        /* snipped 29 next posts, usually a page has
+        between 29 and 30 posts depending on if an
+        ad was showed during scrape time */
+               ],
+    },
+    ...
+    ]
+}</code></pre>
+            </div>
+            <div class="tab-pane" id="tab3">
+            <h4>Source code</h4>
+            <p>
+            The source code for RewindHN is on <a href="https://github.com/doda/rewindhn">Github</a>.
+            </p>
+            </div>
+          </div>
+        </div>
+    </script>
+    <script type="text/template" id="post_tpl">
+    <tr>
+        <td align="right" valign="top" class="title">
+          <%= pos %>.
+        </td>
+        <td>
+          <center>
+            <a id="up_<%= id %>"><img class="uparrow" src="/static/rewind/img/grayarrow.gif" border="0" vspace="3" hspace="2"></a>
+            <span id="down_<%= id %>">
+            </span>
+          </center>
+        </td>
+        <td class="title">
+          <a href="<% if (!domain) { %>http://news.ycombinator.com/<% } %><%= url %>"><%= title %></a>
+          <span class="comhead">
+            <% if (domain) { %>(<%= domain %>) <% } %>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+        </td>
+        <td class="subtext">
+          <span id="score_<%= id %>">
+            <%= points %> points
+          </span>
+          by
+          <a href="http://news.ycombinator.com/user?id=<%= submitter %>"><%= submitter %></a>
+          <%= ago %> ago |
+          <a href="http://news.ycombinator.com/item?id=<%= id %>"><% if (comments) { %><%= comments %> comments<% } else { %>discuss<% } %></a>
+        </td>
+      </tr>
+      <tr class="lasttr" style="height:5px">
+      </tr>
+    </script>
+    <script type="text/template" id="page_tpl">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tbody>
+        <%= rendered_posts %>
+        <% if (!page) { %>
+        <tr style="height:10px"></tr>
+        <tr><td colspan="2"></td><td class="title"><a class="more">More</a></td></tr>
+        <% } %>
+      </tbody>
+    </table>
+    </script>
+    <script src="/static/rewind/js/vendor/jquery-ui-1.8.23.custom.min.js"></script>
+    <script src="/static/rewind/js/vendor/ejs.js"></script>
+    <script src="/static/rewind/js/vendor/keymaster.min.js"></script>
+    <script src="/static/rewind/js/vendor/bootstrap.min.js"></script>
+    <script src="/static/rewind/js/vendor/bootstrap.js"></script>
+    <script src="/static/rewind/js/vendor/moment.js"></script>
+    <script src="/static/rewind/js/main.js"></script>
+  </body>
+
+</html>
