@@ -11,7 +11,7 @@ $(document).ready((function (undefined) {
 
     $(document).on('click', '.close', function() {
         $('#about').popover('hide');
-    })
+    });
     // $('.close').click(function() {
     // });
     key('escape', function(){ $('#about').popover('hide'); });
