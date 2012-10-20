@@ -256,7 +256,13 @@
           by
           <a href="http://news.ycombinator.com/user?id=<%= submitter %>"><%= submitter %></a>
           <%= ago %> ago |
-          <a href="http://news.ycombinator.com/item?id=<%= id %>"><% if (comments) { %><%= comments %> comments<% } else { %>discuss<% } %></a>
+          <a href="http://news.ycombinator.com/item?id=<%= id %>"><%
+           if (comments) {
+            %><%= comments %> comment<% if (comments !== 1) { %>s<% } %><%
+             } else {
+              %>discuss<%
+             }
+                %></a>
         </td>
       </tr>
       <tr class="lasttr" style="height:5px">
