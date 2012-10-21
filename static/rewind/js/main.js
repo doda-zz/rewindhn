@@ -23,11 +23,30 @@ $(document).ready((function (undefined) {
     // });
     key('escape', function(){ $('#about').popover('hide'); });
 
+    var spinnerOpts = {
+      lines: 13, // The number of lines to draw
+      length: 13, // The length of each line
+      width: 3, // The line thickness
+      radius: 14, // The radius of the inner circle
+      corners: 1, // Corner roundness (0..1)
+      rotate: 0, // The rotation offset
+      color: '#000', // #rgb or #rrggbb
+      speed: 1, // Rounds per second
+      trail: 75, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: false, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: 'auto', // Top position relative to parent in px
+      left: 'auto' // Left position relative to parent in px
+    };
+    var spinner = new Spinner(spinnerOpts);
+
     var api = '/api/v1/pages';
     var requesting = {};
     var buffer = 200;
     var currentPage, currentIdx;
-    var $content = $('.content');
+    var $content = $('#content');
 
      // get the first key
     var maxPageIdx;
@@ -101,6 +120,8 @@ $(document).ready((function (undefined) {
             currentPage = newPage;
         } else {
             // kay we dont have the page
+            // load the spinner in
+            spinner.spin($('#content')[0]);
             var callback = function (data) {
                 // store the new pages
                 var newPages = data.results;
@@ -108,6 +129,7 @@ $(document).ready((function (undefined) {
                     var page = newPages[i];
                     pages[page.idx] = page;
                 }
+                spinner.stop();
                 if (pages[index] === undefined) {
                     // uh oh we didn't get the page we requested
                     var apology = $('<h4>Unable to fetch page</h4>').css('position','absolute').position({of: $content});
@@ -157,7 +179,7 @@ $(document).ready((function (undefined) {
 
     $(document).on('click','.more', function (){
         var $more = $('.more');
-        var $spinner = $('<div/>').addClass('spinner').insertBefore($more);
+        var $spinner = $('<div/>').addClass('spinner-img').insertBefore($more);
         $more.css('visibility', 'hidden');
         $.getJSON(api, {spec: JSON.stringify({ page:1, idx:currentIdx })})
             .done(function (data) {
@@ -178,5 +200,6 @@ $(document).ready((function (undefined) {
     key(      'ctrl+right', function(){ moveSlider(  12); });
     key( 'ctrl+shift+left', function(){ moveSlider(-144); });
     key('ctrl+shift+right', function(){ moveSlider( 144); });
+
 
 }).call(this));

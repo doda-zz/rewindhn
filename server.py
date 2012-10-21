@@ -25,6 +25,8 @@ def jsonify(*args, **kwargs):
 
 @app.route('/api/v1/pages')
 def api():
+    import time
+    time.sleep(4)
     args = dict((k, json.loads(v)) for k,v in request.args.items() if k in ACCEPTED_ARGS)
     args['limit'] = min(200, args.get('limit', 30))
     args.setdefault('fields', {'_id': False, 'html': False})
