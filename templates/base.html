@@ -137,18 +137,24 @@
         </dl>
             </div>
             <div class="tab-pane" id="tab2">
-            <h4>API</h4>
+            <h3>API</h3>
             <p>
             I want other hackers to build cool stuff with this data. 
             </p>
             <p>
-            You could for example visualize how stories rise and fall on the front page over time, or build something like <a href="http://hnpickup.appspot.com/">HNPickup</a> but make it extend far into the past. Your creativity is the limit! 
+            You could for example visualize how stories rise and fall on the front page over time, or build something like <a href="http://hnpickup.appspot.com/">HNPickup</a> but make it extend far into the past. Your creativity is the limit!
             </p>
             <p>
              The API is a thin wrapper around a MongoDB collection, accessed through the Python <a href="http://api.mongodb.org/python/current/api/pymongo/collection.html">pymongo</a> driver, in order to preserve the awesome <a href="http://www.mongodb.org/display/DOCS/Querying">querying abilities</a> of MongoDB.
             </p>
             <p>
-            Right now it consists of a single endpoint:
+            If you would like to just grab all the data at once, <a href="https://github.s3.amazonaws.com/downloads/doda/rewindhn/rewindhn.gz">here&#39;s a gzipped JSON dump</a> of the entire collection. Gzip achieves about a 95% data savings rate so keep that in mind while unpacking.</p>
+            <p>This dump and generally the database are updated every 10 minutes (via a */10 cronjob).
+            </p>
+            <h4> Endpoints
+            </h4>
+            <p>
+            Right now the API consists of a single endpoint:
             </p>
             <code>/api/v1/pages</code>
             <p>
@@ -219,7 +225,7 @@
 }</code></pre>
             </div>
             <div class="tab-pane" id="tab3">
-            <h4>Source code</h4>
+            <h3>Source code</h3>
             <p>
             The source code for RewindHN is on <a href="https://github.com/doda/rewindhn">Github</a>.
             </p>
