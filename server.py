@@ -27,6 +27,8 @@ def jsonify(*args, **kwargs):
 def api():
     args = dict((k, json.loads(v)) for k,v in request.args.items() if k in ACCEPTED_ARGS)
     args['limit'] = min(200, args.get('limit', 30))
+    if args.get('sort') is not None:
+       args['sort'] = [('idx', args['sort'])]
     args.setdefault('fields', {'_id': False, 'html': False})
     data = list(DB.find(**args))
     return jsonify(results=data, count=len(data))
