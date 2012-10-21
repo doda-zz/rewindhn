@@ -8,7 +8,7 @@ import json
 
 app = Flask(__name__)
 DB = pymongo.Connection().hnmod.cleaned
-DB.create_index('idx')
+DB.ensure_index('idx')
 ACCEPTED_ARGS = set(('spec', 'fields', 'skip', 'limit', 'sort'))
 
 class MongoEncoder(json.JSONEncoder):
