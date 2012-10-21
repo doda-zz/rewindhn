@@ -25,7 +25,7 @@ body {
 }
 
 /* line 29, ../sass/style.scss */
-.content {
+#content {
   height: 800px;
 }
 
@@ -160,7 +160,7 @@ dd {
 }
 
 /* line 143, ../sass/style.scss */
-.spinner {
+.spinner-img {
   position: absolute;
   width: 16px;
   height: 16px;
