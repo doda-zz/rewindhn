@@ -33,7 +33,7 @@ def api():
 
 @app.route('/')
 def home():
-    last_page = next(DB.find({'page':0}, {'_id':False, 'html':False}).sort('created_at', -1).limit(1))
+    last_page = DB.find_one({'page':0}, {'_id':False, 'html':False}, sort=[('created_at', -1)])
     max_page_idx = last_page['idx']
     return render_template('base.html',
         pages={ max_page_idx: last_page })
