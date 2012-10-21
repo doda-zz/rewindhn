@@ -119,8 +119,7 @@ $(document).ready((function (undefined) {
             // also buffer some more
             ensureRequest(pageChunk(index, 1));
             ensureRequest(pageChunk(index, -1));
-            requesting[url]
-                .done(callback, function() {  });
+            requesting[url].done(callback);
         }
     }
 
