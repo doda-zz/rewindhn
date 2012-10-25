@@ -67,7 +67,7 @@ $(document).ready((function (undefined) {
         var floored = (Math.floor(index/buffer) + delta) * buffer;
         // make sure we dont request over maxPageIdx so we can properly cache response chunks
         var spec = {page: 0, idx: {'$gte': Math.min(maxPageIdx, floored),
-                                   '$lt': Math.min(maxPageIdx+1, floored)+buffer}};
+                                   '$lt': Math.min(maxPageIdx+1, floored+buffer)}};
         return api + "?limit=" + buffer + "&spec=" + JSON.stringify(spec);
     }
 
