@@ -7,7 +7,11 @@ from datetime import datetime
 import json
 
 app = Flask(__name__)
-DB = pymongo.Connection().hnmod.cleaned
+if IN_DEVELOPMENT:
+    CONN = pymongo.Connection()
+else:
+    CONN = pymongo.Connection(port=29919)
+DB = CONN.hnmod.cleaned
 DB.ensure_index('idx')
 ACCEPTED_ARGS = set(('spec', 'fields', 'skip', 'limit', 'sort'))
 
