@@ -90,13 +90,16 @@ def grab_pages():
     # if either of the grabs fail the program should die
     try:
         grabbed = [grab(page) for page in PAGES]
-    except:
+        logging.warning('grabbed %s pages', len(grabbed))
+    except Exception, e:
+        print e
         logging.warning('unable to grab one of the pages')
         sys.exit(1)
     else:
         for i, grabbo in enumerate(grabbed):
+            logging.warning('inserting page %s', i)
             obj = {'html': grabbo, 'created_at': datetime.utcnow(), 'page': i}
-            DB.grabbed.insert(obj)
+            logging.warning(DB.grabbed.insert(obj))
 
 def main():
     grab_pages()
