@@ -86,7 +86,7 @@ def upload():
     subprocess.call(UPLOAD_COMMAND, shell=True)
 
 def grab_pages():
-    DB.grabbed.ensure_index('created_at', 1)
+    DB.grabbed.ensure_index('created_at')
     # if either of the grabs fail the program should die
     try:
         grabbed = [grab(page) for page in PAGES]
