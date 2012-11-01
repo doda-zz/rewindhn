@@ -1,7 +1,6 @@
 import subprocess
 from path import path
 from datetime import datetime
-import sys
 import json
 import bson
 from pyquery import PyQuery
@@ -87,18 +86,9 @@ def upload():
 
 def grab_pages():
     DB.grabbed.ensure_index('created_at')
-    # if either of the grabs fail the program should die
-    try:
-        grabbed = [grab(page) for page in PAGES]
-        logging.warning('grabbed %s pages', len(grabbed))
-    except Exception, e:
-        logging.warning('unable to grab one of the pages', exc_info=e)
-        sys.exit(1)
-    else:
-        for i, grabbo in enumerate(grabbed):
-            logging.warning('inserting page %s', i)
-            obj = {'html': grabbo, 'created_at': datetime.utcnow(), 'page': i}
-            logging.warning(DB.grabbed.insert(obj))
+    grabbed = [{'html': grab(page), 'created_at': datetime.utcnow(), 'page':i} for i, page in enumerate(PAGES)]
+    logging.warning('grabbed %s pages', len(grabbed))
+    logging.warning(DB.grabbed.insert(grabbed))
 
 def main():
     grab_pages()
