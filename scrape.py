@@ -92,8 +92,7 @@ def grab_pages():
         grabbed = [grab(page) for page in PAGES]
         logging.warning('grabbed %s pages', len(grabbed))
     except Exception, e:
-        print e
-        logging.warning('unable to grab one of the pages')
+        logging.warning('unable to grab one of the pages', exc_info=e)
         sys.exit(1)
     else:
         for i, grabbo in enumerate(grabbed):
