@@ -1657,20 +1657,20 @@ $.widget( "ui.slider", $.ui.mouse, {
 					case $.ui.keyCode.PAGE_DOWN:
 						newVal = this._trimAlignValue( curVal - ( (this._valueMax() - this._valueMin()) / numPages ) );
 						break;
-					case $.ui.keyCode.UP:
-					case $.ui.keyCode.RIGHT:
-						if ( curVal === this._valueMax() ) {
-							return;
-						}
-						newVal = this._trimAlignValue( curVal + step );
-						break;
-					case $.ui.keyCode.DOWN:
-					case $.ui.keyCode.LEFT:
-						if ( curVal === this._valueMin() ) {
-							return;
-						}
-						newVal = this._trimAlignValue( curVal - step );
-						break;
+					// case $.ui.keyCode.UP:
+					// case $.ui.keyCode.RIGHT:
+					// 	if ( curVal === this._valueMax() ) {
+					// 		return;
+					// 	}
+					// 	newVal = this._trimAlignValue( curVal + step );
+					// 	break;
+					// case $.ui.keyCode.DOWN:
+					// case $.ui.keyCode.LEFT:
+					// 	if ( curVal === this._valueMin() ) {
+					// 		return;
+					// 	}
+					// 	newVal = this._trimAlignValue( curVal - step );
+					// 	break;
 				}
 
 				this._slide( event, index, newVal );
