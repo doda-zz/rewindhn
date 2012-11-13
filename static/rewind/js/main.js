@@ -61,7 +61,7 @@ $(document).ready((function (undefined) {
     var page_tpl = new EJS({ text: $('#page_tpl').html() });
     var post_tpl = new EJS({ text: $('#post_tpl').html() });
 
-       function pageChunk (index, delta) {
+    function pageChunk (index, delta) {
         // return the url to request for this index
         delta = delta || 0;
         var floored = (Math.floor(index/buffer) + delta) * buffer;
